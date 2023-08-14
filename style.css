@@ -1,0 +1,129 @@
+/* 
+  1 - Positionnement Grid laout
+  2 - Style général
+  3 - Navigation
+  4 - Main content
+ */
+@import url('https://fonts.googleapis.com/css?family=Lato&amp;display=swap');
+
+/****************************\
+  1 - Positionnement Grid laout
+\****************************/
+body {
+  display: inline-grid;
+  grid-template-columns: [start] auto [left] 1fr [end];
+  grid-template-rows: [start] auto [top] 1fr [bottom] auto [end];
+  grid-template-areas: 
+    "header nav"
+    "main main"
+    "footer footer"
+  ;
+  gap: 1.1rem;
+  align-items: center;
+}
+main { 
+  grid-area: main; 
+  display: grid;
+  grid-template-columns: [start] repeat(3, 1fr) [end];
+  grid-template-rows: [start] repeat(3, 1fr) [end];
+  grid-template-areas: 
+    "first aside article"
+    "first aside article"
+  ;
+ 
+  justify-self: center;
+  width: 90%; height: 90%;
+}
+footer {
+  grid-area: footer;
+  text-align: center;
+}
+header {
+  grid-area: header;
+}
+nav {
+  grid-area: nav;
+}
+aside {
+  grid-area: aside;
+}
+article {
+  grid-area: article;
+}
+section:first-of-type {
+  grid-area: first;
+}
+
+.clickable {
+  display: inline-grid;
+  grid-template-columns: .5em 1fr;
+  grid-template-rows: .5em 1fr;
+}
+.clickable > img {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-column-end: 3;
+  grid-row-end: 3;
+}
+.clickable > .img-title {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  font: message-box;
+  color: snow;
+  z-index: 1;
+}
+
+/****************************\
+ 2 - Style général
+\****************************/
+html, body {
+  box-sizing: border-box;
+  font-family: lato;
+}
+
+img {
+  max-width: 100%;
+  border-radius: inherit;
+}
+.clickable:hover {
+  cursor: pointer;
+  opacity: .5;
+}
+
+/****************************\
+ 3 - Navigation
+\****************************/
+.navbar {
+  display: flex;
+  justify-content: space-around;
+
+  list-style: none;
+  padding: 1rem;
+  border-bottom: 1px solid;
+}
+
+/****************************\
+ 4 - Main section
+\****************************/
+main > header,
+main > aside,
+main > article,
+main > section {
+  border-radius: 25px;
+  -webkit-box-shadow: 0px 0px 20px 3px rgba(207, 207, 207, 1);
+    -moz-box-shadow: 0px 0px 20px 3px rgba(207, 207, 207, 1);
+          box-shadow: 0px 0px 20px 3px rgba(207, 207, 207, 1);
+}
+main > article,
+main > aside {
+  overflow: auto;
+}
+.content {
+  margin: 2rem;
+}
+footer::before {
+  content: "";
+  display: block;
+  justify-self: normal;
+  border-block-start: 1px solid;
+}
